@@ -1,0 +1,39 @@
+name: Multi container application CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Run react tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build client docker image
+        run: docker build -t subash/multi-docker-client -f ./client/Dockerfile ./client
+
+      - name: Run tests
+        run: docker run -e CI=truesubash/multi-docker-client npm run test
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build server docker image
+        run: docker build -t subash/multi-docker-server ./server
+
+      - name: Build worker docker image
+        run: docker build -t subash/multi-docker-worker ./worker
+
+      - name: Build client docker image
+        run: docker build -t subash/multi-docker-client ./client
+
+      - name: Build nginx docker image
+        run: docker build -t subash/multi-docker-nginx ./nginx
