@@ -7,7 +7,7 @@ COPY ./package.json ./
 RUN npm install
 
 COPY . . 
-RUN npm run billd
+RUN npm run build
 
 FROM nginx
 EXPOSE 3000
