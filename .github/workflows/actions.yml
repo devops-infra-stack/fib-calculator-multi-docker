@@ -41,7 +41,7 @@ jobs:
 
         # Log in to docker cli
       - name: Login to docker hub
-        run: echo ${{ vars.DOCKER_PASSWORD }} | docker login -u ${{ vars.DOCKER_ID }} --password-stdin
+        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_ID }} --password-stdin
 
         # Take those images and push them docker hub
       - name: Push images to docker hub
