@@ -28,16 +28,16 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build server docker image
-        run: docker build -t subash/multi-docker-server ./server
+        run: docker build -t fithunk/multi-docker-server ./server
 
       - name: Build worker docker image
-        run: docker build -t subash/multi-docker-worker ./worker
+        run: docker build -t fithunk/multi-docker-worker ./worker
 
       - name: Build client docker image
-        run: docker build -t subash/multi-docker-client ./client
+        run: docker build -t fithunk/multi-docker-client ./client
 
       - name: Build nginx docker image
-        run: docker build -t subash/multi-docker-nginx ./nginx
+        run: docker build -t fithunk/multi-docker-nginx ./nginx
 
         # Log in to docker cli
       - name: Login to docker hub
@@ -46,7 +46,7 @@ jobs:
         # Take those images and push them docker hub
       - name: Push images to docker hub
         run: |
-          docker push subash/multi-docker-server
-          docker push subash/multi-docker-worker
-          docker push subash/multi-docker-client
-          docker push subash/multi-docker-nginx
+          docker push fithunk/multi-docker-server
+          docker push fithunk/multi-docker-worker
+          docker push fithunk/multi-docker-client
+          docker push fithunk/multi-docker-nginx
